@@ -6,6 +6,8 @@ import path from 'path'
 import connectToMongo from './database.js';
 import UrlRoute from "./routes/link.js"
 import staticRoute from './routes/staticRoutes.js';
+import userRoute from './routes/user.js';
+
 
 dotenv.config({
     path:"./.env"
@@ -35,4 +37,5 @@ app.set("views",path.resolve("./views"))
 app.use(morgan('dev'))
 app.use("/",UrlRoute)
 app.use("/frontend",staticRoute)
+app.use("/user",userRoute)
 

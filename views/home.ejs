@@ -2,60 +2,62 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/output.css">
 </head>
 
 <body>
 
-    <h1>Welcome to URL Shortner</h1>
+    <!-- Navbar -->
+    <%- include("partials/nav.ejs") %>
+    <div class="container mt-4">
+        <h1 class="text-center">Welcome to URL Shortener</h1>
 
-    <form action="/link" method="post">
+        <form action="/link" method="post" class="my-4">
+            <div class="form-group">
+                <label for="link">Paste Link Here</label>
+                <input type="text" class="form-control" name="link" id="link" placeholder="https://example.com">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Now</button>
+        </form>
 
-        <div>
-            <label for="">Paste Link Here</label>
-            <input type="text" name="link" id="" placeholder="https://example.com">
-        </div>
-        <div>
-            <input type="submit" value="Submit Now">
-        </div>
-
-    </form>
-    <h2>Link Data</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Sr No:</th>
-                <th>short ID</th>
-                <th>redirect URL</th>
-                <th>click Count</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (urls) { %>
-                <% urls.map((item,index)=>{ %>
-                    <tr>
-                        <td>
-                            <%= index + 1 %>
-                        </td>
-                        <td>
-                            <%= item.urliId %>
-                        </td>
-                        <td>
-                            <%= item.redirectUrl %>
-                        </td>
-                        <td>
-                            <%= item.visitHistory.length %>
-                        </td>
-                    </tr>
-
+        <h2 class="mt-5">Link Data</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No:</th>
+                    <th>Short ID</th>
+                    <th>Redirect URL</th>
+                    <th>Click Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (urls) { %>
+                    <% urls.map((item, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= item.urliId %></td>
+                            <td><%= item.redirectUrl %></td>
+                            <td><%= item.visitHistory.length %></td>
+                        </tr>
                     <% }) %>
-                        <% } %>
-        </tbody>
-    </table>
+                <% } else { %>
+                    <tr>
+                        No data found
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
