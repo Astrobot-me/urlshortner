@@ -14,6 +14,8 @@ export async function handleGetalllinks(req,res){
     
 
 }
+
+
 export async function handleGeneratelink(req,res){
     
     const uri = req.body
@@ -47,7 +49,7 @@ export async function handleGetredirect(req,res){
             return res.status(400).json({message:"Bad Request: Link Not found"})
         } else {
             let updatedCount = Number(url[0].clickCount)
-            const updateDoc = await Link.findByIdAndUpdate(url[0]._id,{clickCount:++updatedCount},{returnDocument:'after'})
+            const updateDoc = await Link.findByIdAndUpdate(url[0]._id,{clickCount:++updatedCount, $push:{visitHistory:{timestamps:Date.now()}} },{returnDocument:'after'})
             console.log(updateDoc);
 
             res.redirect(url[0].redirectUrl)

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../css/output.css">
+</head>
+
+<body>
+
+    <h1>Welcome to URL Shortner</h1>
+
+    <form action="/link" method="post">
+
+        <div>
+            <label for="">Paste Link Here</label>
+            <input type="text" name="link" id="" placeholder="https://example.com">
+        </div>
+        <div>
+            <input type="submit" value="Submit Now">
+        </div>
+
+    </form>
+    <h2>Link Data</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr No:</th>
+                <th>short ID</th>
+                <th>redirect URL</th>
+                <th>click Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (urls) { %>
+                <% urls.map((item,index)=>{ %>
+                    <tr>
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <%= item.urliId %>
+                        </td>
+                        <td>
+                            <%= item.redirectUrl %>
+                        </td>
+                        <td>
+                            <%= item.visitHistory.length %>
+                        </td>
+                    </tr>
+
+                    <% }) %>
+                        <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>
