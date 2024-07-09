@@ -18,9 +18,15 @@
                 <div class="card">
                     <div class="card-header text-center">
                         <h2>Login</h2>
+                        <% if (locals.message) { %>
+                            <h3 class="bg-primary p-5 "><%=locals.message  %></h3>
+       
+                           <% } else { %>
+   
+                           <% } %> 
                     </div>
                     <div class="card-body">
-                        <form action="/login" method="post">
+                        <form action="/user/login" method="post">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>

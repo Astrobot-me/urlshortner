@@ -1,4 +1,6 @@
 import User from "../models/user.js";
+import { v4 as uuid } from 'uuid';
+import { setUser } from "../services/auth.js";
 
 
 export async function handleAddUser(req,res){
@@ -18,3 +20,16 @@ export async function handleAddUser(req,res){
     }   
 }
 
+export async function handleUserLogin(req,res){
+    const body = req.body
+    const user = await User.findOne({email:body.email,password:body.password})
+    
+    if(!user){
+        return res.render("login",{message:"Incorrect username or password"})
+    }
+
+    const sessionId = uuid()
+    res.cookie("uid",sessionId)
+    setUser(user,sessionId)
+    return res.redirect("/frontend/home")
+}
