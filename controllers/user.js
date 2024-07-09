@@ -30,6 +30,6 @@ export async function handleUserLogin(req,res){
 
     const sessionId = uuid()
     res.cookie("uid",sessionId)
-    setUser(user,sessionId)
+    setUser(sessionId,user)
     return res.redirect("/frontend/home")
 }

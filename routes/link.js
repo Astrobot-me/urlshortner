@@ -5,8 +5,8 @@ import { handleGetalllinks, handleGeneratelink, handleGetredirect } from '../con
 
 const router = express.Router()
 
-router.route("/link").get(handleGetalllinks).post(handleGeneratelink)
+router.route("/").get(handleGetalllinks).post(handleGeneratelink)
 
-router.route("/:id").get(handleGetredirect)
+// router.route("/:id").get(handleGetredirect)
 
 export default router;  

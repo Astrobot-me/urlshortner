@@ -16,11 +16,19 @@
     <%- include("partials/nav.ejs") %>
     <div class="container mt-4">
         <h1 class="text-center">Welcome to URL Shortener</h1>
+        <h4 class="text-center">
+            <% if (locals.status==200) { %>
+                <span class="bg-success"> <a href="<%= locals.message %>" target="_blank"><%= locals.message %> </a> </span> 
+                <% } else { %>
+                    <span class="bg-danger"> <a href="<%= locals.message %>" target="_blank"><%= locals.message %> </a> </span>
+                    
+            <% } %>
+        </h1>
 
         <form action="/link" method="post" class="my-4">
             <div class="form-group">
                 <label for="link">Paste Link Here</label>
-                <input type="text" class="form-control" name="link" id="link" placeholder="https://example.com">
+                <input type="text" class="form-control" name="link" id="link" placeholder="https://example.com" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit Now</button>
         </form>
@@ -36,8 +44,8 @@
                 </tr>
             </thead>
             <tbody>
-                <% if (urls) { %>
-                    <% urls.map((item, index) => { %>
+                <% if (locals.urls) { %>
+                    <% locals.urls.map((item, index) => { %>
                         <tr>
                             <td><%= index + 1 %></td>
                             <td><%= item.urliId %></td>
