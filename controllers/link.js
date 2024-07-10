@@ -29,11 +29,11 @@ export async function handleGeneratelink(req,res){
             redirectUrl:uri.link,
             visitHistory:new Date(),
             clickCount:0,
-            createdBy: req.user._id,
+            createdBy: req.user.id,
         })
 
 
-        const data =  await Link.find({createdBy:req.user._id})
+        const data =  await Link.find({createdBy:req.user.id})
         // console.log(data);
         if(!data) return res.render("home",{status:200,message:`Link: https://localhost:9000/${shortid}`})
 

@@ -1,4 +1,4 @@
-import { getUser } from "../services/auth.js"
+import { getUser,validateJwt } from "../services/auth.js"
 
 export async function allowLoggedInUserOnly(req,res,next){
 
@@ -9,23 +9,26 @@ export async function allowLoggedInUserOnly(req,res,next){
        return res.redirect("/frontend/login")
     }
 
-    const user = getUser(cookie_uidVal)
+    // const user = getUser(cookie_uidVal)
     // console.log("User",user);
-
-    if (!user) {
+    const isValidated = validateJwt(cookie_uidVal)
+    if (!isValidated) {
         return res.redirect("/frontend/login")
     }
+    // if (!user) {
+    //     return res.redirect("/frontend/login")
+    // }
 
-    req.user = user
+    req.user = isValidated
 
     next()
 }   
 
 export async function checkAuth(req,res,next){
     const cookie_uidVal = req.cookies.uid
-    const user = getUser(cookie_uidVal)
-    
-    req.user = user
+    // const user = getUser(cookie_uidVal)
+    // const isUserLoggedin = validateJwt(cookie_uidVal)
+    req.user = validateJwt(cookie_uidVal)
 
     next()
 }

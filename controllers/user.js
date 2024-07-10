@@ -1,6 +1,6 @@
 import User from "../models/user.js";
 import { v4 as uuid } from 'uuid';
-import { setUser } from "../services/auth.js";
+import { setUser,assignJwt } from "../services/auth.js";
 
 
 export async function handleAddUser(req,res){
@@ -28,8 +28,13 @@ export async function handleUserLogin(req,res){
         return res.render("login",{message:"Incorrect username or password"})
     }
 
-    const sessionId = uuid()
-    res.cookie("uid",sessionId)
-    setUser(sessionId,user)
+    const TokenObj = {
+        email:body.email,
+        id:user._id
+    }
+    const token = assignJwt(TokenObj)
+    // const sessionId = uuid()
+    res.cookie("uid",token)
+    // setUser(sessionId,user)
     return res.redirect("/frontend/home")
 }

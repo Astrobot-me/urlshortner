@@ -1,4 +1,9 @@
 import jwt from 'jsonwebtoken';
+import dotenv from "dotenv"
+
+dotenv.config({
+    path:"./.env"
+})
 const signKey = process.env.JWT_SIGNKEY
 
 const sessionIdToUserMap = new Map();
@@ -15,9 +20,13 @@ export function getUser(id){
 }   
 
 export function assignJwt(object){
-    if(!object) return jwt.sign(object,signKey)
+    if(!object) return null
+    const token =  jwt.sign(object,signKey)
+    // console.log(token);
+    return token
 }
 
 export function validateJwt(token){
-    
+    if(!token) return null
+    return jwt.verify(token,signKey) // returns boolean
 }
