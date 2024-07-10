@@ -12,6 +12,17 @@
 
 <br>
 
+### Tech Stack
+
+<ul>
+<li>Node JS- Express JS</li>
+<li>EJS Templating Engine</li>
+<li>MongoDb</li>
+
+</ul>
+
+<br>
+
 ## Innitial Setups
 <ul>
 <li>You'll need mongoDB cluster which you can get for free on <code>mongodb.com</code> and create a free cluster</li>
@@ -41,3 +52,9 @@
 
 
 > make sure you have `nodeJS` installed in your machine
+
+<a href="https://imgur.com/S7hkTz9"><img src="https://i.imgur.com/S7hkTz9.png" title="source: imgur.com" /></a>
+<br>
+<a href="https://imgur.com/7qVkMDp"><img src="https://i.imgur.com/7qVkMDp.png" title="source: imgur.com" /></a>
+<br>
+<a href="https://imgur.com/dXU5Kwj"><img src="https://i.imgur.com/dXU5Kwj.png" title="source: imgur.com" /></a>
