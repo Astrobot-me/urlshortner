@@ -6,7 +6,10 @@ const staticRoute = express.Router()
 
 
 staticRoute.route("/home").get(async (req,res)=>{
-    const data =  await Link.find({})
+
+    if(!req.user) return res.redirect("/frontend/login")
+
+    const data =  await Link.find({createdBy:req.user._id})
     // console.log(data);
     if(data.message === "Failed") return res.render("home")
 

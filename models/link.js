@@ -16,7 +16,12 @@ const linkSchema = new mongoose.Schema({
     ],
     clickCount:{
         type:Number
+    },
+    createdBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users"
     }
+
 },{
     timestamps:true
 })

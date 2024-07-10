@@ -10,7 +10,7 @@ export async function handleAddUser(req,res){
         const user = await User.create({
             fullname:user_data.fullname,
             email:user_data.email,
-            password:user_data.password
+            password:user_data.password,
         })
         
         res.render("signup",{message:"Account Created Successfully", color:""})

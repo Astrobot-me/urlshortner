@@ -10,7 +10,7 @@ export async function allowLoggedInUserOnly(req,res,next){
     }
 
     const user = getUser(cookie_uidVal)
-    console.log("User",user);
+    // console.log("User",user);
 
     if (!user) {
         return res.redirect("/frontend/login")
@@ -20,3 +20,12 @@ export async function allowLoggedInUserOnly(req,res,next){
 
     next()
 }   
+
+export async function checkAuth(req,res,next){
+    const cookie_uidVal = req.cookies.uid
+    const user = getUser(cookie_uidVal)
+    
+    req.user = user
+
+    next()
+}

@@ -7,7 +7,7 @@ import connectToMongo from './database.js';
 import UrlRoute from "./routes/link.js"
 import staticRoute from './routes/staticRoutes.js';
 import userRoute from './routes/user.js';
-import { allowLoggedInUserOnly } from './middleware/auth.js';
+import { allowLoggedInUserOnly,checkAuth } from './middleware/auth.js';
 import cookieParser from 'cookie-parser'
 import { handleGetredirect } from './controllers/link.js';
 
@@ -42,7 +42,7 @@ app.set("views",path.resolve("./views"))
 
 app.use(morgan('dev'))
 
-app.use("/frontend",staticRoute)
+app.use("/frontend",checkAuth,staticRoute)
 app.use("/link",allowLoggedInUserOnly,UrlRoute)
 app.use("/user",userRoute)
 
